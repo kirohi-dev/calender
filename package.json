@@ -1,0 +1,8 @@
+{
+  "name": "nuxt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kirohi-dev/calender.git",
+  "author": "kirohi-dev <hidari.sawan@gmail.com>",
+  "license": "MIT"
+}
