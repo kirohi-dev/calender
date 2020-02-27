@@ -57,11 +57,12 @@ export default {
     extend(config: any, ctx: any) {
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
-          enforce: "pre",
-          test: /\.(js|vue)$/,
-          loader: "eslint-loader",
+          enforce: 'pre',
+          test: /\.(ts|js|vue)$/,
+          loader: 'eslint-loader',
           exclude: /(node_modules)/
-        })
-      }}
+        });
+      }
+    }
   }
-}
+};
