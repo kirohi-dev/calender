@@ -28,18 +28,11 @@
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.8",
     "prettier": "^1.19.1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint"
     }
-  },
-  "lint-staged": {
-    "*.{ts,js,jsx,vue}": [
-      "yarn run lint",
-      "git add"
-    ]
   }
 }
