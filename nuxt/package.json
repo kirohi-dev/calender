@@ -11,6 +11,11 @@
     "generate": "nuxt-ts generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint"
+    }
+  },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.3.10",
     "nuxt": "^2.0.0"
@@ -29,10 +34,5 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "prettier": "^1.19.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run lint"
-    }
   }
 }
