@@ -25,6 +25,13 @@ export default {
    */
   css: [],
   /*
+   ** Customize the typescript
+   */
+  typescript: {
+    typeCheck: true,
+    ignoreNotFoundWarnings: true
+  },
+  /*
    ** Plugins to load before mounting the App
    */
   plugins: [],
@@ -33,7 +40,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxt/typescript-build'
   ],
   /*
    ** Nuxt.js modules
@@ -46,6 +54,14 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config: any, ctx: any) {
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: "pre",
+          test: /\.(js|vue)$/,
+          loader: "eslint-loader",
+          exclude: /(node_modules)/
+        })
+      }}
   }
 }
