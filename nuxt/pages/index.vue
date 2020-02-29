@@ -36,7 +36,7 @@ import Logo from '~/components/Logo.vue';
 export default class Index extends Vue {}
 </script>
 
-<style>
+<style lang="scss" scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
