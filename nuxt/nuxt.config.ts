@@ -49,6 +49,13 @@ export default {
    */
   modules: [],
   /*
+   ** Nuxt router settings
+   */
+  router: {
+    trailingSlash: true,
+    middleware: 'redirectTrailingSlash'
+  },
+  /*
    ** Build configuration
    */
   build: {
