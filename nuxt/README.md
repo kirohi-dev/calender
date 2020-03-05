@@ -20,3 +20,15 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## アーキテクチャ
+
+clean architecher
+ADR
+
+## 登場人物
+
+- user
+- scheduler
+- datepicker (front) 
+- auth
