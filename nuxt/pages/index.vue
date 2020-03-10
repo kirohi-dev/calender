@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">
         calender
       </h1>
@@ -26,13 +25,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import Logo from '~/components/Logo.vue';
 
-@Component({
-  components: {
-    Logo
-  }
-})
+@Component
 export default class Index extends Vue {}
 </script>
 
