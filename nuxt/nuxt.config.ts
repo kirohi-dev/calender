@@ -59,7 +59,7 @@ export default {
    ** inject global scss
    */
   styleResources: {
-    scss: ['@/assets/scss/_color.scss']
+    scss: ['@/assets/scss/_color.scss', '@/assets/scss/_mixin.scss']
   },
   /*
    ** Build configuration
