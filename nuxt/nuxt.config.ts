@@ -47,13 +47,19 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/style-resources'],
   /*
    ** Nuxt router settings
    */
   router: {
     trailingSlash: true,
     middleware: 'redirectTrailingSlash'
+  },
+  /*
+   ** inject global scss
+   */
+  styleResources: {
+    scss: ['@/assets/scss/_color.scss']
   },
   /*
    ** Build configuration
