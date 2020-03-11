@@ -1,17 +1,22 @@
 import CalendarCell from './CalendarCell';
 
-export default interface CalendarService {
+export default interface ICalendarService {
+  readonly daysOfWeek: string[];
   getMonthCalendar(): CalendarCell[][];
   // getWeek(): CalendarCell[];
 }
 
-export class CalendarServiceImpl implements CalendarService {
+export class CalendarService implements ICalendarService {
   private targetDate: Date;
   private DAY_MILLISECOND: number = 1000 * 60 * 60 * 24;
-  private DAY_WEEK = ['日', '月', '火', '水', '木', '金', '土'];
+  private _daysOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
 
   constructor(targetDate: Date = new Date()) {
     this.targetDate = new Date(targetDate.getTime());
+  }
+
+  get daysOfWeek(): string[] {
+    return this._daysOfWeek;
   }
 
   public getMonthCalendar(): CalendarCell[][] {
