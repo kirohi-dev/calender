@@ -7,8 +7,8 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-import CalendarService, {
-  CalendarServiceImpl
+import ICalendarService, {
+  CalendarService
 } from '@/domain/calendar/CalendarService';
 import Sidebar from '@/components/Sidebar.vue';
 
@@ -27,7 +27,7 @@ export default class CalenderMonth extends Vue {
     this.month = Number(this.$route.params.month);
     this.day = Number(this.$route.params.day);
 
-    const Calendar: CalendarService = new CalendarServiceImpl(
+    const Calendar: ICalendarService = new CalendarService(
       new Date(this.year, this.month - 1, this.day)
     );
     console.log(Calendar.getMonthCalendar());
