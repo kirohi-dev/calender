@@ -1,4 +1,4 @@
-export default interface CalenderCell {
+export default interface ICalenderCell {
   month: number;
   day: number;
 }

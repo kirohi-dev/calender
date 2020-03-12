@@ -1,8 +1,11 @@
-import CalendarCell from './CalendarCell';
+import ICalendarCell from './CalendarCell';
 
 export default interface ICalendarService {
   readonly daysOfWeek: string[];
-  getMonthCalendar(): CalendarCell[][];
+  readonly year: number;
+  readonly month: number;
+  readonly day: number;
+  getMonthCalendar(): ICalendarCell[][];
   // getWeek(): CalendarCell[];
 }
 
@@ -10,16 +13,34 @@ export class CalendarService implements ICalendarService {
   private targetDate: Date;
   private DAY_MILLISECOND: number = 1000 * 60 * 60 * 24;
   private _daysOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
+  private _year: number;
+  private _month: number;
+  private _day: number;
 
   constructor(targetDate: Date = new Date()) {
     this.targetDate = new Date(targetDate.getTime());
+    this._year = this.targetDate.getFullYear();
+    this._month = this.targetDate.getMonth();
+    this._day = this.targetDate.getDate();
   }
 
   get daysOfWeek(): string[] {
     return this._daysOfWeek;
   }
 
-  public getMonthCalendar(): CalendarCell[][] {
+  get year(): number {
+    return this._year;
+  }
+
+  get month(): number {
+    return this._month;
+  }
+
+  get day(): number {
+    return this._day;
+  }
+
+  public getMonthCalendar(): ICalendarCell[][] {
     const lastMonthLastDate: Date = new Date(
       this.targetDate.getFullYear(),
       this.targetDate.getMonth(),
@@ -33,8 +54,10 @@ export class CalendarService implements ICalendarService {
     return this.translateMonthCalendar(calendarDates);
   }
 
-  private getLastMonthInMonthCalendar(lastMonthLastDate: Date): CalendarCell[] {
-    const result: CalendarCell[] = [];
+  private getLastMonthInMonthCalendar(
+    lastMonthLastDate: Date
+  ): ICalendarCell[] {
+    const result: ICalendarCell[] = [];
     const lastMonthLastDayOfWeek = lastMonthLastDate.getDay();
     for (let i = 0; lastMonthLastDayOfWeek + 1 - i > 0; i++) {
       result.push({
@@ -45,8 +68,8 @@ export class CalendarService implements ICalendarService {
     return result;
   }
 
-  private getTargetMonthInMonthCalendar(): CalendarCell[] {
-    const result: CalendarCell[] = [];
+  private getTargetMonthInMonthCalendar(): ICalendarCell[] {
+    const result: ICalendarCell[] = [];
     const targetMonthLastDate = new Date(
       this.targetDate.getFullYear(),
       this.targetDate.getMonth() + 1,
@@ -62,9 +85,9 @@ export class CalendarService implements ICalendarService {
   }
 
   private getOffsetMonthCalendar(
-    exceptOffsetDates: CalendarCell[]
-  ): CalendarCell[] {
-    const result: CalendarCell[] = [];
+    exceptOffsetDates: ICalendarCell[]
+  ): ICalendarCell[] {
+    const result: ICalendarCell[] = [];
     for (let i = 0; (exceptOffsetDates.length + i) % 7 !== 0; i++) {
       result.push({
         month: this.targetDate.getMonth() + 2,
@@ -75,10 +98,10 @@ export class CalendarService implements ICalendarService {
   }
 
   private translateMonthCalendar(
-    CalendarDates: CalendarCell[]
-  ): CalendarCell[][] {
-    const result: CalendarCell[][] = [];
-    let tmp: CalendarCell[] = [];
+    CalendarDates: ICalendarCell[]
+  ): ICalendarCell[][] {
+    const result: ICalendarCell[][] = [];
+    let tmp: ICalendarCell[] = [];
     CalendarDates.forEach((CalendarCell, index) => {
       tmp.push(CalendarCell);
       if ((index + 1) % 7 === 0) {
