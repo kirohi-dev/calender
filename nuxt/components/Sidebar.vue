@@ -135,7 +135,8 @@ export default class ComponentSidebar extends Vue {
   &__heading {
     display: flex;
     justify-content: space-between;
-    margin-left: 7px;
+    width: 215px;
+    margin-left: 6px;
   }
 
   &__title {
@@ -146,8 +147,8 @@ export default class ComponentSidebar extends Vue {
   }
 
   &__navigation-holder {
-    display: flex;
-    justify-content: flex-end;
+    position: relative;
+    right: 3px;
   }
 
   &__next,
@@ -161,7 +162,7 @@ export default class ComponentSidebar extends Vue {
   }
 
   &__next {
-    margin-left: 10px;
+    margin-left: 5px;
   }
 
   &__days {
@@ -174,6 +175,13 @@ export default class ComponentSidebar extends Vue {
 }
 
 .days {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  width: 215px;
+  height: 196px;
+
   &__week {
     display: flex;
     justify-content: space-between;
