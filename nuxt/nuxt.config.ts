@@ -23,7 +23,10 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/css/reset.css'],
+  css: [
+    '@/assets/css/reset.css',
+    'material-design-icons/iconfont/material-icons.css'
+  ],
   /*
    ** Customize the typescript
    */
