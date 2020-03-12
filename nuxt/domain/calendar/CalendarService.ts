@@ -6,6 +6,7 @@ export default interface ICalendarService {
   readonly month: number;
   readonly day: number;
   getMonthCalendar(): ICalendarCell[][];
+  getSidebarCalendar(): ICalendarCell[][];
   // getWeek(): CalendarCell[];
 }
 
@@ -49,7 +50,21 @@ export class CalendarService implements ICalendarService {
     const lastMonthDates = this.getLastMonthInMonthCalendar(lastMonthLastDate);
     const targetMonthDates = this.getTargetMonthInMonthCalendar();
     const exceptOffsetDates = lastMonthDates.concat(targetMonthDates);
-    const offsetDates = this.getOffsetMonthCalendar(exceptOffsetDates);
+    const offsetDates = this.getOneWeekOffsetMonthCalendar(exceptOffsetDates);
+    const calendarDates = exceptOffsetDates.concat(offsetDates);
+    return this.translateMonthCalendar(calendarDates);
+  }
+
+  public getSidebarCalendar(): ICalendarCell[][] {
+    const lastMonthLastDate: Date = new Date(
+      this.targetDate.getFullYear(),
+      this.targetDate.getMonth(),
+      0
+    );
+    const lastMonthDates = this.getLastMonthInMonthCalendar(lastMonthLastDate);
+    const targetMonthDates = this.getTargetMonthInMonthCalendar();
+    const exceptOffsetDates = lastMonthDates.concat(targetMonthDates);
+    const offsetDates = this.getTwoWeekOffsetMonthCalendar(exceptOffsetDates);
     const calendarDates = exceptOffsetDates.concat(offsetDates);
     return this.translateMonthCalendar(calendarDates);
   }
@@ -59,6 +74,7 @@ export class CalendarService implements ICalendarService {
   ): ICalendarCell[] {
     const result: ICalendarCell[] = [];
     const lastMonthLastDayOfWeek = lastMonthLastDate.getDay();
+    if (lastMonthLastDayOfWeek === 6) return [];
     for (let i = 0; lastMonthLastDayOfWeek + 1 - i > 0; i++) {
       result.push({
         month: lastMonthLastDate.getMonth() + 1,
@@ -84,11 +100,20 @@ export class CalendarService implements ICalendarService {
     return result;
   }
 
-  private getOffsetMonthCalendar(
-    exceptOffsetDates: ICalendarCell[]
+  private getOneWeekOffsetMonthCalendar(exceptOffsetDates: ICalendarCell[]) {
+    return this.offsetMonthCalculator(exceptOffsetDates, 7);
+  }
+
+  private getTwoWeekOffsetMonthCalendar(exceptOffsetDates: ICalendarCell[]) {
+    return this.offsetMonthCalculator(exceptOffsetDates, 14);
+  }
+
+  private offsetMonthCalculator(
+    exceptOffsetDates: ICalendarCell[],
+    offsetDates: number
   ): ICalendarCell[] {
     const result: ICalendarCell[] = [];
-    for (let i = 0; (exceptOffsetDates.length + i) % 7 !== 0; i++) {
+    for (let i = 0; (exceptOffsetDates.length + i) % offsetDates !== 0; i++) {
       result.push({
         month: this.targetDate.getMonth() + 2,
         day: i + 1

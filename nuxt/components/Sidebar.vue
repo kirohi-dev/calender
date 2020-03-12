@@ -71,7 +71,7 @@ export default class ComponentSidebar extends Vue {
       new Date(this.previewYear, this.previewMonth - 1, this.previewDay)
     );
     this.daysOfWeek = Calendar.daysOfWeek;
-    this.monthCalendar = Calendar.getMonthCalendar();
+    this.monthCalendar = Calendar.getSidebarCalendar();
   }
 
   weekDayClasses(month: number, day: number) {
@@ -85,7 +85,7 @@ export default class ComponentSidebar extends Vue {
     const Calendar: ICalendarService = new CalendarService(
       new Date(this.previewYear, this.previewMonth - 2, this.previewDay)
     );
-    this.monthCalendar = Calendar.getMonthCalendar();
+    this.monthCalendar = Calendar.getSidebarCalendar();
     this.previewYear = Calendar.year;
     this.previewMonth = Calendar.month + 1;
   }
@@ -94,7 +94,7 @@ export default class ComponentSidebar extends Vue {
     const Calendar: ICalendarService = new CalendarService(
       new Date(this.previewYear, this.previewMonth, this.previewDay)
     );
-    this.monthCalendar = Calendar.getMonthCalendar();
+    this.monthCalendar = Calendar.getSidebarCalendar();
     this.previewYear = Calendar.year;
     this.previewMonth = Calendar.month + 1;
   }
