@@ -59,6 +59,7 @@ export default class ComponentSidebar extends Vue {
   // data
   daysOfWeek: string[] = [];
   monthCalendar: ICalendarCell[][] = [];
+  today: Date = new Date();
   previewYear: number = 0;
   previewMonth: number = 0;
   previewDay: number = 0;
@@ -77,7 +78,11 @@ export default class ComponentSidebar extends Vue {
   weekDayClasses(month: number, day: number) {
     const offset = month !== this.month ? 'days__day--offset' : '';
     const target =
-      month === this.month && day === this.day ? 'days__day--target' : '';
+      this.year === this.today.getFullYear() &&
+      month === this.today.getMonth() + 1 &&
+      day === this.today.getDate()
+        ? 'days__day--target'
+        : '';
     return offset + target;
   }
 
@@ -104,7 +109,7 @@ export default class ComponentSidebar extends Vue {
 <style lang="scss" scoped>
 .sidebar {
   width: 256px;
-  height: 100vh;
+  height: calc(100vh - 64px);
   padding-top: 15px;
   padding-right: 20px;
   padding-left: 6px;
