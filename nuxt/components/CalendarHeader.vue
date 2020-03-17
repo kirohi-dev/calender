@@ -6,7 +6,7 @@
       </div>
       <div class="right-header__title">カレンダー</div>
       <div class="right-header__navigation-holder">
-        <div class="right-header__target">今日</div>
+        <div class="right-header__target" @click="jumpToday">今日</div>
         <div class="right-header__prev material-icons" @click="jumpPrevMonth">
           keyboard_arrow_left
         </div>
@@ -61,6 +61,10 @@ export default class CalendarHeader extends Vue {
       `/calendar/month/${this.nextMonth.getFullYear()}/${this.nextMonth.getMonth() +
         1}/1/`
     );
+  }
+
+  jumpToday() {
+    this.$router.push('/calendar/month/');
   }
 
   clicked() {

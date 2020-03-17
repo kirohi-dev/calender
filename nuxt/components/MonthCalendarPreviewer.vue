@@ -14,7 +14,7 @@
         v-for="date in week"
         :key="date.id"
         class="previewer__day"
-        :class="dayClasses"
+        :class="dayClasses(date)"
       >
         {{ dateGenerator(date) }}
       </div>
@@ -42,10 +42,23 @@ export default class MonthCalendarPreviewer extends Vue {
 
   daysOfWeek: string[] = [];
   monthCalendar: ICalendarCell[][] = [];
+  today: Date = new Date();
 
-  get dayClasses() {
-    if (this.monthCalendar.length === 5) return 'previewer__day--5row';
-    return 'previewer__day--6row';
+  dayClasses(date: ICalendarCell) {
+    const classes: string[] = [];
+    if (
+      this.year === this.today.getFullYear() &&
+      date.month === this.today.getMonth() + 1 &&
+      date.day === this.today.getDate()
+    ) {
+      classes.push('previewer__day--target');
+    }
+    if (this.monthCalendar.length === 5) {
+      classes.push('previewer__day--5row');
+      return classes.join(' ');
+    }
+    classes.push('previewer__day--6row');
+    return classes.join(' ');
   }
 
   mounted() {
@@ -92,6 +105,7 @@ $borders: 1px solid $whitesmoke;
   }
 
   &__day {
+    position: relative;
     display: flex;
     justify-content: center;
     width: $cell-width;
@@ -104,6 +118,24 @@ $borders: 1px solid $whitesmoke;
 
     &--6row {
       height: calc((100vh - 64px - 20px) / 6);
+    }
+
+    &--target {
+      color: white;
+
+      &::before {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        left: 0;
+        z-index: -1;
+        width: 24px;
+        height: 24px;
+        margin: 0 auto;
+        content: '';
+        background: #185abc;
+        border-radius: 12px;
+      }
     }
 
     &:last-child {
