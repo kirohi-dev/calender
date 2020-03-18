@@ -23,7 +23,10 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '@/assets/css/reset.css',
+    'material-design-icons/iconfont/material-icons.css'
+  ],
   /*
    ** Customize the typescript
    */
@@ -47,13 +50,19 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/style-resources'],
   /*
    ** Nuxt router settings
    */
   router: {
     trailingSlash: true,
     middleware: 'redirectTrailingSlash'
+  },
+  /*
+   ** inject global scss
+   */
+  styleResources: {
+    scss: ['@/assets/scss/_color.scss', '@/assets/scss/_mixin.scss']
   },
   /*
    ** Build configuration

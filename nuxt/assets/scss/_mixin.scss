@@ -1,0 +1,10 @@
+$break-point: (
+  phone: 768px
+);
+
+// メディアクエリを@mixinで定義
+@mixin media( $key ) {
+  @media ( min-width: map-get( $break-point, $key )) {
+    @content;
+  }
+}

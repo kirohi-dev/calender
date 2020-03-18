@@ -19,7 +19,6 @@ module.exports = {
     ],
     // add your custom rules here
     rules: {
-      'import/no-unresolved': 0,
-      "semi": ["error", "always"]
+      'import/no-unresolved': 0
     }
   };
