@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.3.10",
+    "firebase": "^7.11.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
