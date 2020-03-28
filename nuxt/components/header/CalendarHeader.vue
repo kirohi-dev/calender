@@ -17,11 +17,17 @@
       <div class="right-header__target-month">{{ year }}年{{ month }}月</div>
     </div>
     <div class="left-header">
-      <div class="left-header__selector">
+      <div class="left-header__btn left-header__btn--selector">
         月
         <div class="material-icons">
           arrow_drop_down
         </div>
+      </div>
+      <div class="left-header__btn left-header__btn--login">
+        ログイン
+      </div>
+      <div class="left-header__btn left-header__btn--registor">
+        新規登録
       </div>
     </div>
   </div>
@@ -138,17 +144,26 @@ export default class CalendarHeader extends Vue {
   display: flex;
   align-items: center;
 
-  &__selector {
+  &__btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 54px;
     height: 34px;
     font-size: 1.4rem;
     color: $lightgray;
     cursor: pointer;
     border: 1px solid $whitesmoke;
     border-radius: 5px;
+
+    &--selector {
+      width: 54px;
+    }
+
+    &--login,
+    &--registor {
+      width: 80px;
+      margin-left: 20px;
+    }
   }
 }
 </style>
