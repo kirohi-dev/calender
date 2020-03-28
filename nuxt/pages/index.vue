@@ -19,15 +19,26 @@
           GitHub
         </a>
       </div>
+      <div>{{ posts }}</div>
+      <div @click="test">testest</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { feedStore } from '@/store';
 
 @Component
-export default class Index extends Vue {}
+export default class Index extends Vue {
+  get posts() {
+    return feedStore.posts;
+  }
+
+  test() {
+    feedStore.incr();
+  }
+}
 </script>
 
 <style lang="scss" scoped>
