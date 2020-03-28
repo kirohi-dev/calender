@@ -1,17 +1,8 @@
 import { Plugin } from '@nuxt/types';
-
 import { AuthService } from '@/domain/auth/authService';
 
-declare module '@nuxt/types' {
-  interface Context {
-    $auth: AuthService;
-  }
-}
-
-const authService = new AuthService();
-
-const auth: Plugin = (context) => {
-  context.$auth = authService;
+const authPlugin: Plugin = (_, inject) => {
+  inject('auth', new AuthService());
 };
 
-export default auth;
+export default authPlugin;
