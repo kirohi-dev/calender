@@ -33,6 +33,7 @@ export default class Login extends Vue {
 
   submit() {
     console.log(this.email, this.password);
+    this.$auth.loginUser(this.email, this.password);
   }
 }
 </script>
