@@ -1,24 +1,43 @@
 {
   "name": "functions",
   "scripts": {
-    "build": "tsc",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
+    "build": "rm -rf lib && webpack",
+    "serve": "yarn build && firebase emulators:start --only functions",
+    "shell": "yarn build && firebase functions:shell",
+    "start": "yarn shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
+    "lint:fix": "yarn run lint --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint"
+    }
   },
   "engines": {
     "node": "10"
   },
   "main": "lib/index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "firebase-admin": "^8.6.0",
     "firebase-functions": "^3.3.0"
   },
   "devDependencies": {
+    "@webpack-cli/init": "0.2.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "firebase-functions-test": "^0.1.6",
+    "husky": "^4.2.3",
+    "prettier": "^2.0.2",
+    "ts-loader": "^6.2.2",
     "typescript": "^3.2.2",
-    "firebase-functions-test": "^0.1.6"
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
   },
   "private": true
 }

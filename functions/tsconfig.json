@@ -6,7 +6,17 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "allowJs": true, /*JavaScriptのコンパイルには必須*/
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "src/*"
+      ],
+    },
   },
   "compileOnSave": true,
   "include": [
