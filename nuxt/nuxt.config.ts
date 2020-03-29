@@ -37,7 +37,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['@/plugins/auth'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -79,6 +79,20 @@ export default {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         });
+      }
+    },
+    babel: {
+      presets({ isServer }: { isServer: any }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 }
+            }
+          ]
+        ];
       }
     }
   }
