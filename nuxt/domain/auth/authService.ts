@@ -16,6 +16,7 @@ export default interface IAuthService {
     email: string,
     password: string
   ): Promise<firebase.auth.UserCredential>;
+  sendEmailVerification(user: firebase.User): Promise<void>;
 }
 
 export class AuthService implements IAuthService {
@@ -31,5 +32,9 @@ export class AuthService implements IAuthService {
     password: string
   ): Promise<firebase.auth.UserCredential> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+
+  public sendEmailVerification(user: firebase.User) {
+    return user.sendEmailVerification();
   }
 }

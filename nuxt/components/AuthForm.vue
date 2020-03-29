@@ -1,11 +1,11 @@
 <template>
   <div class="auth-form">
-    <h1 class="auth-form__title">{{ title }}</h1>
+    <h1 class="auth-form__title">{{ authText }}</h1>
     <div class="auth-form__subtitle">メールアドレス</div>
     <input v-model="email" type="email" class="auth-form__field" />
     <div class="auth-form__subtitle">パスワード</div>
     <input v-model="password" type="password" class="auth-form__field" />
-    <div class="auth-form__button" @click="submit">{{ buttonText }}</div>
+    <div class="auth-form__button" @click="submit">{{ authText }}</div>
   </div>
 </template>
 
@@ -17,22 +17,20 @@ export default class AuthForm extends Vue {
   @Prop({
     type: String,
     required: true,
-    default: 'Log in'
+    default: 'login'
   })
-  title?: string;
-
-  @Prop({
-    type: String,
-    required: true,
-    default: 'Log in'
-  })
-  buttonText?: string;
+  authType?: 'login' | 'signin';
 
   @PropSync('emailVal', { type: String })
   email?: string;
 
   @PropSync('passwordVal', { type: String })
   password?: string;
+
+  get authText() {
+    if (this.authType === 'login') return 'Log in';
+    return 'Sign up';
+  }
 
   @Emit()
   submit() {}

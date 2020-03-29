@@ -1,15 +1,31 @@
 <template>
   <div class="auth-header">
     <div class="auth-header__title">カレンダー</div>
-    <div class="auth-header__signin">新規登録</div>
+    <div class="auth-header__auth" @click="jump">{{ buttonInnerText }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
-export default class AuthHeader extends Vue {}
+export default class AuthHeader extends Vue {
+  @Prop({ type: String, required: true, default: 'login' })
+  authType?: 'login' | 'signin';
+
+  get buttonInnerText() {
+    if (this.authType === 'login') return '新規登録';
+    return 'ログイン';
+  }
+
+  jump() {
+    if (this.authType === 'login') {
+      this.$router.push('/signin/');
+      return;
+    }
+    this.$router.push('/login/');
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -27,7 +43,7 @@ export default class AuthHeader extends Vue {}
     color: $dimgray;
   }
 
-  &__signin {
+  &__auth {
     display: flex;
     align-items: center;
     justify-content: center;

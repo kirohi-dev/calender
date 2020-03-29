@@ -1,9 +1,9 @@
 <template>
-  <div class="login">
-    <auth-header auth-type="login" />
-    <div class="login__form">
+  <div class="sign">
+    <auth-header auth-type="signin" />
+    <div class="sign__form">
       <auth-form
-        auth-type="login"
+        auth-type="signin"
         :email-val.sync="email"
         :password-val.sync="password"
         @submit="submit"
@@ -26,18 +26,22 @@ import AuthForm from '@/components/AuthForm.vue';
     AuthForm
   }
 })
-export default class Login extends Vue {
+export default class Signin extends Vue {
   email: string = '';
   password: string = '';
 
-  submit() {
-    this.$auth.loginUser(this.email, this.password);
+  async submit() {
+    const response = await this.$auth.registerUser(this.email, this.password);
+    console.log(response.user);
+    if (response.user) {
+      await this.$auth.sendEmailVerification(response.user);
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.login {
+.sign {
   &__form {
     display: flex;
     align-items: center;
