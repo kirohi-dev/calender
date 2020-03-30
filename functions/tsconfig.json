@@ -10,9 +10,6 @@
     "allowJs": true, /*JavaScriptのコンパイルには必須*/
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./*"
-      ],
       "@/*": [
         "src/*"
       ],

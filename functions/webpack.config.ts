@@ -1,7 +1,5 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-console.log(path.resolve(__dirname, 'src'));
-console.log(__dirname);
 
 module.exports = {
   mode: 'production',
@@ -18,6 +16,10 @@ module.exports = {
     },
   },
   target: 'node',
+  node: {
+    __dirname: true,
+    __filename: true,
+  },
   module: {
     rules: [
       {

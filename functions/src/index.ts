@@ -1,8 +1,16 @@
 import * as functions from 'firebase-functions';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+import { cors } from '@/middleware/cors';
+
+import { routers } from '@/router';
+
+const express = require('express');
+
+const app = express();
+
+routers.forEach((routerObj) => {
+  app.use(cors);
+  app.use(routerObj.path, routerObj.router);
+});
+
+export const api = functions.https.onRequest(app);
