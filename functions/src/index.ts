@@ -8,8 +8,9 @@ const express = require('express');
 
 const app = express();
 
+app.use(cors);
+
 routers.forEach((routerObj) => {
-  app.use(cors);
   app.use(routerObj.path, routerObj.router);
 });
 

@@ -3,7 +3,7 @@ module.exports = {
   env: {
     es6: true
   },
-  parser: "babel-eslint",
+  parser: "@typescript-eslint/parser",
   parserOptions: {
       sourceType: "module"
   },
