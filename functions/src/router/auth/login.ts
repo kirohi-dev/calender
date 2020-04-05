@@ -6,9 +6,7 @@ import { Translator } from '@/domain/router/Translator';
 const router = Router();
 const translator = new Translator();
 
-router.post('/', (_: Request, res: Response) => {
-  res.send(__filename);
-});
+router.post('/', (_: Request, res: Response) => {});
 
 export const login: IRouter = {
   path: translator.makePath(__filename),

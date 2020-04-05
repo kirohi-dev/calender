@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
+    "target": "es2017",
     "module": "commonjs",
+    "outDir": "lib",
+    "types": ["reflect-metadata"],
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017",
     "allowJs": true, /*JavaScriptのコンパイルには必須*/
     "baseUrl": ".",
     "paths": {
@@ -18,5 +22,8 @@
   "compileOnSave": true,
   "include": [
     "src"
+  ],
+  "exclude": [
+      "node_modules"
   ]
 }

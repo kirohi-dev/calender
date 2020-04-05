@@ -1,5 +1,5 @@
 import * as firebase from 'firebase/app';
-
+import { injectable } from 'inversify';
 import 'firebase/auth';
 import 'firebase/firestore';
 
@@ -9,7 +9,22 @@ import { SignupRequest } from '@/type/adapter';
 
 firebase.initializeApp(firebaseConfig);
 
-export class AuthService {
+export default interface IAuthService {
+  registerUser(
+    body: SignupRequest
+  ): Promise<
+    { success: boolean } | { success: boolean; errorCode: any }
+  > | null;
+  loginUser(
+    email: string,
+    password: string
+  ): Promise<firebase.auth.UserCredential>;
+  sendEmailVerification(user: firebase.User): Promise<void>;
+  logout(): Promise<void>;
+}
+
+@injectable()
+export class AuthService implements IAuthService {
   public registerUser(body: SignupRequest) {
     if (!body.collect) {
       return null;

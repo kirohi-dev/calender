@@ -1,6 +1,10 @@
 import { Response } from 'express';
+import { injectable } from 'inversify';
 
-export class SignupResponder {
+import IResponder from '@/interfaces/Responder';
+
+@injectable()
+export class SignupResponder implements IResponder {
   response(result: any, response: Response) {
     result.then((data: any) => {
       if (data === null) {

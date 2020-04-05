@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { auth } from './auth';
 
 import { IRouter } from '@/type/router';

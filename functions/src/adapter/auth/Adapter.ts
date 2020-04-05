@@ -1,8 +1,14 @@
 import { Request } from 'express';
+import { injectable } from 'inversify';
 import { SignupRequest } from '@/type/adapter';
 
+export default interface IAdapter {
+  emailPasswordRequest(request: Request): SignupRequest;
+}
+
+@injectable()
 export class Adapter {
-  signupRequest(request: Request): SignupRequest {
+  emailPasswordRequest(request: Request): SignupRequest {
     if (!(request.body.email && request.body.password)) {
       return {
         collect: false,

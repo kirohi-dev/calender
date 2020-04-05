@@ -2,11 +2,15 @@ import { Router, Request, Response } from 'express';
 
 import { IRouter } from '@/type/router';
 import { Translator } from '@/domain/router/Translator';
-import SignupAction from '@/action/auth/SignupAction';
+
+import { Signup } from '@/action/auth/SignupAction';
+import { authContainer } from '@/action/auth/inversify.config';
+import TYPE from '@/action/auth/inversify.types';
 
 const router = Router();
 const translator = new Translator();
-const signupAction = new SignupAction();
+
+const signupAction = authContainer.get<Signup>(TYPE.SignUp);
 
 router.post('/', (req: Request, res: Response) => {
   signupAction.invoke(req, res);

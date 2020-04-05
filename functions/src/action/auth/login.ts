@@ -1,5 +1,7 @@
+import { Response, Request } from 'express';
+
 export default class Login {
-  invoke() {
-    return 'test';
+  invoke(response: Response, request: Request) {
+    return response.send(request);
   }
 }

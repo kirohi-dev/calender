@@ -1,4 +1,8 @@
-export class Translator {
+import { injectable } from 'inversify';
+import ITranslator from '@/interfaces/Translator';
+
+@injectable()
+export class Translator implements ITranslator {
   makePath(filename: string) {
     const routerIndex = filename
       .split('/')
