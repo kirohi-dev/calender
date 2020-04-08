@@ -17,7 +17,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 
 import Sidebar from '@/components/Sidebar.vue';
-import CalendarHeader from '@/components/CalendarHeader.vue';
+import CalendarHeader from '@/components/header/CalendarHeader.vue';
 import MonthCalendarPreviewer from '@/components/MonthCalendarPreviewer.vue';
 
 @Component({
