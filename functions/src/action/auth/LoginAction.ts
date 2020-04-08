@@ -9,7 +9,7 @@ import IAction from '@/interfaces/Action';
 import TYPE from './inversify.types';
 
 @injectable()
-export class SignupAction implements IAction {
+export class LoginAction implements IAction {
   private responder: IResponder;
   private adapter: IAdapter;
   private service: IAuthService;
@@ -24,9 +24,9 @@ export class SignupAction implements IAction {
     this.service = service;
   }
 
-  invoke(request: Request, response: Response) {
-    return this.responder.response(
-      this.service.registerUser(this.adapter.emailPasswordRequest(request)),
+  async invoke(request: Request, response: Response) {
+    await this.responder.response(
+      this.service.loginUser(this.adapter.emailPasswordRequest(request)),
       response
     );
   }

@@ -9,18 +9,18 @@ import IAction from '@/interfaces/Action';
 
 const router = Router();
 const translator = new Translator();
-const loginAction = authContainer.get<IAction>(TYPE.LoginAction);
+
+const verifyAction = authContainer.get<IAction>(TYPE.VerifyAction);
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await loginAction.invoke(req, res);
+    await verifyAction.invoke(req, res);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
 
-export const login: IRouter = {
+export const verify: IRouter = {
   path: translator.makePath(__filename),
   router,
 };

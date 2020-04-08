@@ -1,10 +1,12 @@
 // interfaseの定義?
 const TYPES = {
-  IResponder: Symbol.for('IResponder'),
-  ITranslator: Symbol.for('ITranslator'),
-  IAuthService: Symbol.for('IAuthService'),
-  IAdapter: Symbol.for('IAdapter'),
-  SignUp: Symbol.for('SignUp'),
+  Responder: Symbol.for('IResponder'),
+  Translator: Symbol.for('ITranslator'),
+  AuthService: Symbol.for('IAuthService'),
+  Adapter: Symbol.for('IAdapter'),
+  SignUpAction: Symbol.for('SignUpAction'),
+  LoginAction: Symbol.for('LoginAction'),
+  VerifyAction: Symbol.for('VerifyAction'),
 };
 
 export default TYPES;
